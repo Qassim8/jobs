@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities{
+  .auth-btn{
+    @apply flex justify-center items-center gap-2 py-2 px-5 bg-emerald-400 rounded-sm duration-200 hover:bg-emerald-600
+  }
+  .nav-items{
+    @apply py-5 px-6 text-slate-800 font-semibold text-center duration-200 hover:bg-emerald-400
+  }
+  .job-item{
+    @apply p-5 rounded-md border border-slate-300
+  }
+}
+nav .active{
+  background-color: #34D399;
+}
+@media(max-width: 767px){
+  .container{
+    padding-inline: 10px !important;
+  }
+  .nav-items{
+    font-size: 10px;
+    padding-inline: 5px !important;
+    padding-block: 8px !important;
+  }
+  .auth-btn{
+    font-size: 10px;
+    padding-inline: 5px !important;
+    padding-block: 4px !important;
+  }
+}
