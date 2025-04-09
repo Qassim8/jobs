@@ -27,7 +27,7 @@ function SearchJobs() {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
-
+    setLoad(true)
     try {
       const response = await axios.post(
         "https://fake-apis-uomb.onrender.com/upload-cv/",
@@ -37,11 +37,13 @@ function SearchJobs() {
         }
       );
       if (response.data.keywords) {
+        setLoad(false)
         const extractedKeywords = response.data.keywords
           .map(([word]) => word)
           .join(" ");
         setKeywords(extractedKeywords);
-        // fetchJobs(extractedKeywords); // تشغيل البحث مباشرة
+        console.log(response.data.keywords.join(","));
+        fetchJobs(response.data.keywords.join(",")); // تشغيل البحث مباشرة
       }
     } catch (error) {
       console.error("Error uploading file:", error);
@@ -63,7 +65,7 @@ function SearchJobs() {
           headers: {
             "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
             "X-RapidAPI-Key":
-              "dfea7ee3cfmshbf3514d40aa0a4dp184dd9jsn3d74d929eca6",
+              "1c258210ebmsh7838cfcbf6894cap182dcejsn9e487b8725fe",
           },
         }
       );

@@ -8,7 +8,7 @@ function Banner() {
        bg-cover h-[80vh] before:absolute before:h-full before:w-full before:top-0 before:left-0 before:bg-slate-800/80"
     >
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 container mx-auto">
-        <h1 className=" text-[40px] text-white">
+        <h1 className="text-md md:text-[40px] text-white">
           Explore thousands of career opportunities in various fields, and
           easily find the job that suits your skills
         </h1>

@@ -12,7 +12,7 @@ function SearchBar({ query, onSearch }) {
     <form onSubmit={handleSubmit} className='w-full flex items-center'>
       <input
         type="search"
-        className='w-full py-2 px-3 outline-none border border-slate-300 rounded-s-md'
+        className='w-full md:py-2 px-3 outline-none border border-slate-300 rounded-s-md'
         value={word}
         onChange={(e) => setWord(e.target.value)}
         placeholder='Search for job...'

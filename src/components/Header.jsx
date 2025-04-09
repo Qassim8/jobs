@@ -7,13 +7,15 @@ function Header() {
 
   const deleteToken = () => {
     localStorage.removeItem("userToken");
+    localStorage.removeItem("userId");
     window.location.reload();
+    window.location.href("/")
   };
 
   const links = [
     { name: "Home", href: "/" },
     { name: "Search for Jobs", href: "/search" },
-    { name: "Favourites", href: "/favourites" },
+    { name: "Favourites", href: token ? "/favourites" : "/login" },
   ];
 
   return (

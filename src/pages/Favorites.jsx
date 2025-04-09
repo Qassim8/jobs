@@ -1,38 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import { useContext } from 'react';
 import JobItem from '../components/JobItem'
-import axios from 'axios';
+import { favContext } from '../context/FavoritesProvider';
 
 function Favorites() {
-  const [favItems, setFavItems] = useState([]);
-  const userId = localStorage.getItem("userId");
-  const token = localStorage.getItem("userToken");
 
-    // const getFavList = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       `https://job-search-api-nine.vercel.app/api/favorites/${userId}`,
-    //       {
-    //         headers: { Authorization: `Bearer ${token}` },
-    //       }
-    //     );
-    //     const data = await response.data;
-    //     if (response.status === 200) {
-    //       setFavItems(data);
-    //     }
-    //   } catch (er) {
-    //     console.log(er);
-    //   }
-    // };
-
-    // useEffect(() => {
-    //   getFavList();
-    // }, []);
+const {favItems} = useContext(favContext)  
 
   return (
-    <div className='py-16 container mx-auto'>
-      <JobItem job={favItems} />
+    <div className="py-16 container mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
+      {favItems?.length === 0 ? (
+        <h1 className='text-2xl font-semibold text-red-500'>Your fav list is empty!</h1>
+      ) : (
+        favItems?.map((item) => (
+          <JobItem
+            job={item}
+            favItems={favItems}
+            key={item.job_id}
+          />
+        ))
+      )}
     </div>
-  )
+  );
 }
 
 export default Favorites

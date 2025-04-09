@@ -19,12 +19,12 @@ function Home() {
         {
           params: {
             query: "all",
-            country: countries
+            country: countries,
           },
           headers: {
             "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
             "X-RapidAPI-Key":
-              "dfea7ee3cfmshbf3514d40aa0a4dp184dd9jsn3d74d929eca6",
+              "1c258210ebmsh7838cfcbf6894cap182dcejsn9e487b8725fe",
           },
         }
       );

@@ -1,4 +1,4 @@
-import { BookmarkSimple, Check } from "@phosphor-icons/react";
+import {  Check } from "@phosphor-icons/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -19,7 +19,7 @@ function JobDetails() {
           params: { job_id: id },
           headers: {
             "x-rapidapi-key":
-              "dfea7ee3cfmshbf3514d40aa0a4dp184dd9jsn3d74d929eca6",
+              "1c258210ebmsh7838cfcbf6894cap182dcejsn9e487b8725fe",
             "x-rapidapi-host": "jsearch.p.rapidapi.com",
           },
         }
@@ -42,24 +42,24 @@ function JobDetails() {
   return load ? (
     <Loader />
   ) : (
-    <div className="my-16 p-5 container mx-auto border border-slate-400 rounded-md">
-      <h1 className="text-3xl font-bold text-slate-800">{job[0]?.job_title}</h1>
-      <h1 className="text-2xl text-slate-700 pt-3">{job[0]?.job_publisher}</h1>
+    <div className="my-16 p-3 md:p-5 container mx-2 md:mx-auto border border-slate-400 rounded-md">
+      <h1 className="md:text-3xl font-bold text-slate-800">{job[0]?.job_title}</h1>
+      <h1 className="md:text-2xl text-slate-700 pt-3">{job[0]?.job_publisher}</h1>
       <div className="flex justify-between items-center pt-5 pb-2 border-b border-slate-400">
         <p className="text-slate-600">Location: {job[0]?.job_location}</p>
         <p className="text-slate-600">{job[0]?.job_posted_at}</p>
       </div>
       <div className="py-5">
-        <h3 className="text-xl text-slate-800 pb-2">Description</h3>
-        <p className="text-slate-600">{job[0]?.job_description}</p>
+        <h3 className="md:text-xl text-slate-800 pb-2">Description</h3>
+        <p className="text-slate-600 text-[10px] md:text-md">{job[0]?.job_description}</p>
       </div>
       <div className="flex justify-between items-center py-5">
         <div>
-          <h3 className="text-lg text-slate-700">Benefits</h3>
+          <h3 className="md:text-lg text-slate-700">Benefits</h3>
           <div className="flex flex-col gap-3">
-            {job[0]?.job_benefits?.map((item) =>
+            {job[0]?.job_benefits?.map((item, idx) =>
               item ? (
-                <p className="flex items-center gap-2">
+                <p className="flex items-center gap-2" key={idx}>
                   <Check className="text-emerald-400 text-xl font-extrabold" />
                   {item}
                 </p>

@@ -6,20 +6,27 @@ import SearchJobs from "./pages/SearchJob";
 import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Favorites from "./pages/Favorites";
+import FavoritesProvider from "./context/FavoritesProvider";
 
 function App() {
+  const token = localStorage.getItem("userToken");
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/search" element={<SearchJobs />} />
-          <Route path="/job/:id" element={<JobDetails />} />
-          <Route path="/favourites" element={<Favorites />} />
-        </Route>
-      </Routes>
+      <FavoritesProvider>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/search" element={<SearchJobs />} />
+            <Route path="/job/:id" element={<JobDetails />} />
+            <Route
+              path="/favourites"
+              element={token ? <Favorites /> : <Home />}
+            />
+          </Route>
+        </Routes>
+      </FavoritesProvider>
     </BrowserRouter>
   );
 }

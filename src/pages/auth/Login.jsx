@@ -24,7 +24,8 @@ function Login() {
           setLoading(false)
         window.localStorage.setItem("userToken", data.token);
         window.localStorage.setItem("userId", data.user._id)
-          navigate('/')
+        navigate('/')
+         window.location.reload();
         }
     } catch (er) {
       setLoading(false)

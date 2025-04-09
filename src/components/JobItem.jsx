@@ -1,77 +1,11 @@
 import { BookmarkSimple, Calendar } from "@phosphor-icons/react";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link} from "react-router-dom";
+import { favContext } from "../context/FavoritesProvider";
 
 const JobItem = ({ job }) => {
-  const [favItems, setFavItems] = useState([]);
-  const userId = localStorage.getItem("userId");
-  const token = localStorage.getItem("userToken");
-  const nav = useNavigate();
 
-  const getFavList = async () => {
-    try {
-      const response = await axios.get(
-        `https://job-search-api-nine.vercel.app/api/favorites/${userId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      const data = await response.data;
-      if (response.status === 200) {
-        setFavItems(data);
-      }
-    } catch (er) {
-      console.log(er);
-    }
-  };
-
-
-  const addToFav = async (data) => {
-    if (!token || !userId) {
-      nav("/login");
-    } else {
-      try {
-        const response = await axios.post(
-          `https://job-search-api-nine.vercel.app/api/favorites/${userId}`,
-          { ...data },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
-
-        if (response.status === 201) {
-          setFavItems({ ...favItems, data });
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
-
-  const removeFav = async (id) => {
-    try {
-      const response = await axios.delete(
-        `https://job-search-api-nine.vercel.app/api/favorites/${userId}/${id}`,
-        {
-          headers: {
-            Authorization: `Barear Token`,
-          },
-        }
-      );
-      if (response.status === 200) {
-        setFavItems(favItems.filter((el) => el.id !== id));
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-    useEffect(() => {
-      getFavList();
-    }, []);
-  
-  console.log(favItems)
+  const {favItems, addToFav, removeFav} = useContext(favContext)  
 
   return (
     <div className="job-item">

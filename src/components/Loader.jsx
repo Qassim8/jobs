@@ -5,7 +5,7 @@ function Loader() {
     <div className="container mx-auto my-32">
       <div role="status">
         <svg
-          ariaHidden="true"
+          aria-hidden="true"
           className="w-16 h-16 text-gray-200 animate-spin fill-emerald-500"
           viewBox="0 0 100 101"
           fill="none"
