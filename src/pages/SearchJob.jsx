@@ -9,14 +9,12 @@ import pdfWorker from "pdfjs-dist/build/pdf.worker.entry";
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 function SearchJobs() {
-
   const [keywords, setKeywords] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [load, setLoad] = useState(false);
   const [query, setQuery] = useState("");
   const countries = ["sa", "fr", "ca", "gr", "tr"];
-
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -27,7 +25,7 @@ function SearchJobs() {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
-    setLoad(true)
+    setLoad(true);
     try {
       const response = await axios.post(
         "https://fake-apis-uomb.onrender.com/upload-cv/",
@@ -37,7 +35,7 @@ function SearchJobs() {
         }
       );
       if (response.data.keywords) {
-        setLoad(false)
+        setLoad(false);
         const extractedKeywords = response.data.keywords
           .map(([word]) => word)
           .join(" ");
@@ -49,7 +47,6 @@ function SearchJobs() {
       console.error("Error uploading file:", error);
     }
   };
-
 
   const fetchJobs = async (searchQuery) => {
     try {
@@ -88,8 +85,6 @@ function SearchJobs() {
     }
   };
 
-
-
   return (
     <section className="container mx-auto py-16">
       <div className="parent">
@@ -105,6 +100,8 @@ function SearchJobs() {
             ) : (
               <JobList jobs={jobs} />
             )
+          ) : load ? (
+            <Loader />
           ) : (
             <>
               <h3 className="text-center my-3">OR</h3>
